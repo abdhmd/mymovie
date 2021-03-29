@@ -1,65 +1,106 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from "../styles/Home.module.css";
+import Nav from "../components/Nav";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
-export default function Home() {
+const defaultEndpoint = `http://www.omdbapi.com/?s=ssss&apikey=675b9166`;
+
+export async function getServerSideProps() {
+  const res = await fetch(defaultEndpoint);
+  const data = await res.json();
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
+export default function Home({ data }) {
+  const { movies: defaultResults = [] } = data.Search;
+  const [movies, updateMovies] = useState(defaultResults);
+  const [search, setSearch] = useState(null);
+
+  const [page, updatePage] = useState({
+    current: defaultEndpoint,
+  });
+  const { current } = page;
+
+  useEffect(() => {
+    if (current === defaultEndpoint) return data.Search === [];
+
+    async function request() {
+      const res = await fetch(current);
+      const nextData = await res.json();
+
+      updatePage({
+        current,
+      });
+
+      updateMovies(nextData.Search);
+    }
+
+    request();
+  }, [current]);
+
+  function handleOnSubmitSearch(e) {
+    e.preventDefault();
+    const { currentTarget = {} } = e;
+    const fields = Array.from(currentTarget?.elements);
+    const fieldQuery = fields.find((field) => field.name === "query");
+
+    const value = fieldQuery.value || "";
+    const endpoint = `http://www.omdbapi.com/?s=${value}&apikey=675b9166`;
+
+    setSearch(value);
+
+    updatePage({
+      current: endpoint,
+    });
+  }
+
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+    <main>
+      <Nav />
+      <section className={styles.hero}>
+        <h1>
+          find your <span>movie</span>
         </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
+        <form className="search" onSubmit={handleOnSubmitSearch}>
+          <input
+            name="query"
+            type="text"
+            placeholder="Type something ..."
+            autoComplete="off"
+          />
+          <button>Search</button>
+        </form>
+        {movies == undefined || movies.length == 0 ? (
+          <div style={{ display: "none" }}>nothing to show </div>
+        ) : (
+          <Link
+            href={{
+              pathname: "movies/",
+              query: { data: search },
+            }}
           >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+            <div className={styles.result}>
+              <a> show your result of <span>{search}</span></a>
+            </div>
+          </Link>
+        )}
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+        {movies == undefined && (
+          <div className={styles.noResult}>
+            <a href="/"> sorry nothing to show</a>
+          </div>
+        )}
+      </section>
+    </main>
+  );
 }

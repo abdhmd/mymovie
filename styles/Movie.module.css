@@ -1,0 +1,88 @@
+.main {
+  background: var(--dark);
+  color: white;
+  overflow: hidden;
+}
+
+.movie {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 1rem;
+}
+
+.back {
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  cursor: pointer;
+  border-right: 4px solid white;
+  margin: 1rem;
+  border-radius: 5px 0 0 5px;
+  background: rgba(255, 255, 255, 0.103);
+}
+
+.movie h3 {
+  margin: 1rem 0 1rem 0;
+  line-height: 0.95;
+}
+
+.title p {
+  font-weight: 500;
+}
+.title h5 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.progressCircle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-left: 4px solid var(--primary);
+  margin: 1rem 0;
+  color: white;
+  padding-left: 10px;
+}
+
+.progressCircle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-left: 14px;
+}
+
+.progress {
+  stroke-linecap: round;
+  stroke: #ffffff;
+}
+
+.movieContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 2rem;
+  margin-top: 3rem;
+}
+
+.movieContent img {
+  border-radius: 5px;
+}
+
+.movieContent h5 {
+  margin-bottom: 0.5rem;
+}
+
+.movieContent p {
+  margin-bottom: 1rem;
+}
+
+.movieContent .desc {
+  grid-column: 1/3;
+}
