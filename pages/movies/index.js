@@ -21,7 +21,9 @@ const Movies = ({ movies, search }) => {
                 key={i}
               >
                 <div className={styles.movie}>
-                  <img src={movie.Poster} alt={movie.Title} />
+                  <div className={styles.image}>
+                    <img src={movie.Poster} alt={movie.Title} />
+                  </div>
                   <div className={styles.head}>
                     <span>{movie.Title}</span>
                     <p>{movie.Year}</p>
@@ -37,8 +39,6 @@ const Movies = ({ movies, search }) => {
 };
 
 export default Movies;
-
-
 
 export async function getServerSideProps({ query }) {
   const search = query.data;

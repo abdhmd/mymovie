@@ -55,7 +55,7 @@ const Movie = ({ movie, name }) => {
                 strokeWidth={strokeWidth}
                 fill="transparent"
                 r={radius}
-                cx={size / 2}
+                cx={size / 2 - 6}
                 cy={size / 2}
                 style={{
                   strokeDasharray: `${circumference} ${circumference}`,
@@ -69,14 +69,12 @@ const Movie = ({ movie, name }) => {
         <div className={styles.movieContent}>
           <img src={Poster} alt={Title} />
           <div className={styles.info}>
-            <div className={styles.para}>
               <h5>Director</h5>
               <p>{Director}</p>
               <h5>Country</h5>
               <p>{Country}</p>
               <h5>Language</h5>
               <p>{Language}</p>
-            </div>
           </div>
           <div className={styles.desc}>
             <h5>Plot</h5>

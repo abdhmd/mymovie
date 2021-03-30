@@ -2,6 +2,8 @@ import styles from "../styles/Home.module.css";
 import Nav from "../components/Nav";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Icon from "../components/Icon"
+
 
 const defaultEndpoint = `http://www.omdbapi.com/?s=ssss&apikey=675b9166`;
 
@@ -63,7 +65,6 @@ export default function Home({ data }) {
     });
   }
 
-
   return (
     <main>
       <Nav />
@@ -78,7 +79,9 @@ export default function Home({ data }) {
             placeholder="Type something ..."
             autoComplete="off"
           />
-          <button>Search</button>
+          <button>
+            <Icon/>
+          </button>
         </form>
         {movies == undefined || movies.length == 0 ? (
           <div style={{ display: "none" }}>nothing to show </div>
@@ -90,7 +93,10 @@ export default function Home({ data }) {
             }}
           >
             <div className={styles.result}>
-              <a> show your result of <span>{search}</span></a>
+              <a>
+                {" "}
+                show your result of <span>{search}</span>
+              </a>
             </div>
           </Link>
         )}

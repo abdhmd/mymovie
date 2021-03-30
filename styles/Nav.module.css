@@ -1,28 +1,31 @@
 .nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 50px;
+  grid-template-rows: 50px;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  height: 60px;
 }
 
-.logo{
-    text-transform: uppercase;
-    color: var(--primary);
+.logo {
+  text-transform: uppercase;
+  color: var(--primary);
 }
 
-.logo span{
-    color: var(--dark);
-    font-weight: 400;
+.logo span {
+  color: var(--dark);
+  font-weight: 400;
 }
 
 .navBtn {
-  width: 32px;
-  height: 23px;
+  width: 26px;
+  height: 17px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+  justify-self: flex-end;
 }
 
 .navBtn span {
@@ -33,5 +36,82 @@
 }
 
 .navMenu {
-  display: none;
+  background: white;
+  overflow: hidden;
+  grid-column: 1/3;
+  transition: 400ms all linear;
+  height: 0;
+  position: fixed;
+  left: 0;
+  top: 50px;
+  width: 100%;
+  background: var(--dark);
+  border-bottom: 2px solid var(--primary);
+  color: white;
+}
+
+.navMenu ul {
+  width: 100%;
+  text-align: center;
+}
+
+.navMenu li {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.navMenu li:hover {
+  background: var(--primary);
+  transition: 400ms all linear;
+}
+
+/* MEDIA QUERY */
+
+@media (min-width: 740px) {
+  .nav {
+    grid-template-columns: auto;
+    justify-content: flex-start;
+    margin-top: .5rem;
+  }
+
+  .logo {
+    margin-right: 2rem;
+  }
+  .navBtn {
+    display: none;
+  }
+  .navMenu {
+    height: 50px;
+    position: unset;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    background: unset;
+    color: black;
+    border: unset;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+  }
+  .navMenu ul {
+    display: flex;
+    width: max-content;
+    border-left: 2px solid var(--primary);
+  }
+  .navMenu ul li {
+    width: max-content;
+    margin-left: 2rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .navMenu ul li:hover {
+    background: unset;
+    color: var(--primary);
+  }
 }

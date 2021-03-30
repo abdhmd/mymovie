@@ -81,4 +81,25 @@ p{
   line-height: 1.6;
 }
 
+@media (min-width: 1096px) {
+  h1 {
+    font-size: calc(var(--xll) * 0.75 );
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: calc(var(--xl) * 0.75 );
+  }
+  h3 {
+    font-size: calc(var(--lg) * 0.75 );
+  }
+  h4 {
+    font-size: calc(var(--md) * 0.75 );
+  }
+  h5 {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+
 
