@@ -54,7 +54,7 @@ export default function Home({ data }) {
     const fieldQuery = fields.find((field) => field.name === "query");
 
     const value = fieldQuery.value || "";
-    const endpoint = `http://www.omdbapi.com/?s=${value}&apikey=675b9166`;
+    const endpoint = `https://www.omdbapi.com/?s=${value}&apikey=675b9166`;
 
     setSearch(value);
 
