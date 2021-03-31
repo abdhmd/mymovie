@@ -20,9 +20,10 @@
   padding: 5px;
   overflow: hidden;
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  align-content: center;
+  justify-content: center;
   border: 1px solid black;
 }
 
@@ -37,7 +38,6 @@
 
 .hero form input {
   padding-left: 1rem;
-  flex: 1;
 }
 
 .hero form input:focus {
@@ -49,7 +49,7 @@
   color: white;
   border-radius: 5px;
   cursor: pointer;
-  width: 50px;
+  /* width: 50px; */
   height: 50px;
   line-height: 60px;
 }
@@ -64,12 +64,13 @@
   margin-top: 2rem;
   text-transform: uppercase;
   border: 1px solid black;
+  background: var(--dark);
   border-radius: 5px;
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: white;
   font-weight: 500;
   width: 100%;
   transition: 400ms linear all;

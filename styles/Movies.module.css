@@ -93,6 +93,7 @@
 }
 @media (min-width: 1280px) {
   .moviesContent {
+    padding: 3rem 6rem;
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(4, 1fr);

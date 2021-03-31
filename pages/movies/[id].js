@@ -12,6 +12,8 @@ export async function getServerSideProps({ query }) {
     },
   };
 }
+
+
 const Movie = ({ movie, name }) => {
   const {
     Title,
@@ -27,7 +29,6 @@ const Movie = ({ movie, name }) => {
     Genre,
   } = movie;
 
-  console.log(movie)
 
   const size = 100;
   const strokeWidth = 4;
