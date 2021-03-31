@@ -37,7 +37,8 @@
 }
 
 .hero form input {
-  padding-left: 1rem;
+  width: max-content;
+  padding-left: calc(1rem - 5px);
 }
 
 .hero form input:focus {

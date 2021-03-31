@@ -38,7 +38,7 @@
   box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   display: grid;
-  grid-template-rows: 280px auto;
+  grid-template-rows: 300px auto;
   overflow: hidden;
 }
 
